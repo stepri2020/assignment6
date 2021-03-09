@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+    <title> Amicable Numbers </title>
+  </head>
+    <body>
+      <div id="form">
+      <form>
+        <label for="num1">Enter your first number:</label><br>
+        <input type="text" id="num1" name="num1"><br>
+        <label for="num2">Enter your second number:</label><br>
+        <input type="text" id="num2" name="num2"><br> <br>
+        <input type="button" onclick ="compute()" value="Submit" id="btn1">
+        </form>
+      </div>
+
+      <script language="javascript">
+      // returns true if x is a factor of y, false otherwise
+      function isAFactor(x,y) {
+        if (x%y == 0) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      // returns the sum of an array
+      // NOTE: I know there is a bug here in the code that I couldn't figure out.
+      // When the elements of the array are parsed, they separate digits of one
+      // number. 
+      function computeSum(x) {
+        sum = 0;
+        for (i = 0; i < x.length; i++) {
+          temp = parseInt(x[i]);
+          sum += temp;
+        }
+        return sum;
+      }
+
+      function compute() {
+        num1 = parseInt(document.getElementById("num1").value);
+        num2 = parseInt(document.getElementById("num2").value);
+
+
+        var amicable1 = [1];
+        var amicable2 = [1];
+        for (i = 2; i < num1; i++) {
+          if (isAFactor(num1,i)) {
+            amicable1 += i;
+          }
+        }
+        for (j = 2; j < num2; j++) {
+          if (isAFactor(num2,j)) {
+            amicable2 += j;
+          }
+        }
+
+        sum1 = computeSum(amicable1);
+        sum2 = computeSum(amicable2);
+
+
+        if (sum1 == num2 && sum2 == num1) {
+          alert("The numbers are amicable.");
+        } else {
+          alert("The numbers are not amicable.")
+        }
+      }
+
+
+
+
+
+      </script>
+    </body>
+</html>
